@@ -1,6 +1,8 @@
 #include "synapse.h"
 
 void updateSynapse(Synapse* synapse){
-	synapse->out->input = synapse->in->output * synapse->weight;
+	if(synapse->in->isFiring){
+		synapse->out->input += synapse->in->output * synapse->weight;
+	}
 }
 

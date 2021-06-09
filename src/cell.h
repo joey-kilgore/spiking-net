@@ -5,6 +5,7 @@ typedef struct Cell{
 	int input;
 	int output;
 	bool isFiring;
+	int tSinceFire;
 } Cell;
 
 void updateCell(Cell* cell);

@@ -22,5 +22,4 @@ fileHandler.o: src/fileHandler.c src/fileHandler.h
 	gcc -g -c src/fileHandler.c
 
 clean:
-	rm *.o
 	rm bin/*.exe

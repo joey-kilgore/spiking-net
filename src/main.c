@@ -1,5 +1,6 @@
 #include "cell.h"
 #include "synapse.h"
+#include "fileHandler.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -51,6 +52,9 @@ void testSynapse(){
 }
 
 void multiCell(){
+	openCellFile("./data/cells.csv");
+	openSynapseFile("./data/synapses.csv");
+
 	Cell cells[10];
 	for(int i=0; i<10; i++){
 		cells[i].input = 0;
@@ -120,11 +124,13 @@ void multiCell(){
 			printf("%i\t\033[1;0m|",cells[i].input);
 		}
 		printf("\n");
+		saveCells(cells,10,t);
 
 		// update synapses
 		for(int i=0; i<100; i++){
 			updateSynapse(&synapses[i]);
 		}
+		saveSynapses(synapses,100,t);
 	}
 
 	// output synapses
@@ -138,4 +144,7 @@ void multiCell(){
 		printf("|\n");
 	}
 	printf("\n");
+
+	closeCellFile();
+	closeSynapseFile();
 }

@@ -10,3 +10,4 @@ make
 cd analysis
 Rscript plotOverTime.R
 eog cell.png
+eog synapse.png

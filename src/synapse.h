@@ -8,3 +8,4 @@ typedef struct Synapse{
 } Synapse;
 
 void updateSynapse(Synapse* synpase);
+void updateSynapseEnv(Synapse* synapse, Environment* env);

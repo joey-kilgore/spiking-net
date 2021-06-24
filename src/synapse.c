@@ -27,3 +27,21 @@ void updateSynapse(Synapse* synapse){
 	}
 }
 
+void updateSynapseEnv(Synapse* synapse, Environment* env){
+	if(synapse->in->isFiring){
+		synapse->out->input += synapse->in->output * synapse->weight;
+
+		if(synapse->out->tSinceFire < 10){
+			// if the out cell if firing before the in cell we will decrease the weight
+			synapse->weight += env->trainingRate*decrease[synapse->out->tSinceFire];
+			if(synapse->weight < 0) synapse->weight = 0;
+		}
+	}
+	if(synapse->out->isFiring){
+		if(synapse->in->tSinceFire < 10){
+			// if the in cell is firing before the out cell we will increase the weight
+			synapse->weight += env->trainingRate*increase[synapse->in->tSinceFire];
+			if(synapse->weight > 500) synapse->weight = 500;
+		}
+	}
+}

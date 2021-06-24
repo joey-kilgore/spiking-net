@@ -3,6 +3,7 @@
 
 FILE *cellFile;
 FILE *synapseFile;
+FILE *firingFile;
 
 void openCellFile(char fileName[]){
 	cellFile = fopen(fileName, "w+");
@@ -10,6 +11,14 @@ void openCellFile(char fileName[]){
 
 void closeCellFile(){
 	fclose(cellFile);
+}
+
+void openFiringFile(char fileName[]){
+	firingFile = fopen(fileName, "w+");
+}
+
+void closeFiringFile(char fileName[]){
+	fclose(firingFile);
 }
 
 void openSynapseFile(char fileName[]){
@@ -36,4 +45,13 @@ void saveSynapses(Synapse synapses[], int numSynapses, int timeStep){
 		fprintf(synapseFile, "%f,", synapses[i].weight);
 	}
 	fprintf(synapseFile, "\n");
+}
+
+void saveFiring(Cell cells[], int numCells, int timeStep){
+	// save the cells that are currently firing
+	fprintf(firingFile, "%i,", timeStep);
+	for(int i=0; i<numCells; i++){
+		fprintf(firingFile, "%i,", (cells[i].isFiring) ? i+1 : 0);
+	}
+	fprintf(firingFile, "\n");
 }

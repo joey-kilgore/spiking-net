@@ -1,6 +1,7 @@
 #include "cell.h"
 #include "synapse.h"
 #include "fileHandler.h"
+#include "environment.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -77,7 +78,7 @@ void multiCell(){
 	for(int i=0; i<10; i++){
 		printf("C%i\t",i);
 		for(int j=0; j<10; j++){
-			printf("|%f\t",synapses[i*10+j].weight);
+			printf("|%0.2f\t",synapses[i*10+j].weight);
 		}
 		printf("|\n");
 	}
@@ -93,25 +94,28 @@ void multiCell(){
 	printf("CELL INPUTS\n");
 	printf("C0\t|C1\t|C2\t|C3\t|C4\t|C5\t|C6\t|C7\t|C8\t|C9\t|\n");
 	for(int i=0; i<10; i++){
-		printf("%f\t|",cells[i].input);
+		printf("%0.2f\t|",cells[i].input);
 	}
 	printf("\n");
 
+	Environment* env = createEnvironment();
+	env->decayingTrainingRate = true;
+
 	// loop through each time step
-	for(int t=0; t<30; t++){
+	for(; env->timeStep<50; nextTimeStep(env)){
 		// set all the input values
-		if(t<5){
+		if(env->timeStep<25){
 			for(int i=0; i<10; i++){
 				cells[i].input+=inputs[i];
 			}
 		}else{
-			cells[0].input += 300;
-			cells[9].input += 300;
+			cells[0].input += 500;
+			cells[9].input += 500;
 		}
 
 		// update cells checking for a spike
 		for(int i=0; i<10; i++){
-			updateCell(&cells[i]);
+			updateCellEnv(&cells[i], env);
 		}
 
 		// display output
@@ -121,16 +125,16 @@ void multiCell(){
 				printf("\033[1;31m");
 			}
 
-			printf("%f\t\033[1;0m|",cells[i].input);
+			printf("%0.2f\t\033[1;0m|",cells[i].input);
 		}
 		printf("\n");
-		saveCells(cells,10,t);
+		saveCells(cells,10,env->timeStep);
 
 		// update synapses
 		for(int i=0; i<100; i++){
-			updateSynapse(&synapses[i]);
+			updateSynapseEnv(&synapses[i], env);
 		}
-		saveSynapses(synapses,100,t);
+		saveSynapses(synapses,100,env->timeStep);
 	}
 
 	// output synapses
@@ -139,7 +143,7 @@ void multiCell(){
 	for(int i=0; i<10; i++){
 		printf("C%i\t",i);
 		for(int j=0; j<10; j++){
-			printf("|%f\t",synapses[i*10+j].weight);
+			printf("|%0.2f\t",synapses[i*10+j].weight);
 		}
 		printf("|\n");
 	}

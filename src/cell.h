@@ -2,8 +2,8 @@
 #include <stdbool.h>
 
 typedef struct Cell{
-	int input;
-	int output;
+	double input;
+	double output;
 	bool isFiring;
 	int tSinceFire;
 } Cell;

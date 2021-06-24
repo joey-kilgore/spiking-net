@@ -3,7 +3,7 @@
 // increase is the amount the weight will increase relative to the difference in time step
 //	each index is the next time step difference
 //	the increase is an exponential decay over 10 time steps
-int increase[] = {100, 50, 25, 12, 6, 3, 2, 1, 1, 1};
+int increase[] = {0, 100, 50, 25, 12, 6, 3, 2, 1, 1};
 
 // decrease is teh amount the weight will decrease if the in fires before the out cell
 int decrease[] = {-100, -50, -25, -12, -6, -3, -2, -1, -1, -1};

@@ -31,24 +31,24 @@ void testSynapse(){
 	s1.out = &c2;
 	s1.weight = 50;
 
-	printf("c1 input : %i\n", c1.input);
+	printf("c1 input : %f\n", c1.input);
 	c1.input = 10000;
-	printf("c1 input : %i\n", c1.input);
+	printf("c1 input : %f\n", c1.input);
 
 	printf("UPDATE C1\n");
 	updateCell(&c1);	
 
-	printf("c1 input : %i\n", c1.input);
-	printf("c1 output : %i\n", c1.output);
+	printf("c1 input : %f\n", c1.input);
+	printf("c1 output : %f\n", c1.output);
 
 	printf("UPDATE S1\n");
 	updateSynapse(&s1);
 
-	printf("c1 input : %i\n", c1.input);
-	printf("c1 output : %i\n", c1.output);
+	printf("c1 input : %f\n", c1.input);
+	printf("c1 output : %f\n", c1.output);
 
-	printf("c2 input : %i\n", c2.input);
-	printf("c2 output : %i\n", c2.output);
+	printf("c2 input : %f\n", c2.input);
+	printf("c2 output : %f\n", c2.output);
 }
 
 void multiCell(){
@@ -77,7 +77,7 @@ void multiCell(){
 	for(int i=0; i<10; i++){
 		printf("C%i\t",i);
 		for(int j=0; j<10; j++){
-			printf("|%i\t",synapses[i*10+j].weight);
+			printf("|%f\t",synapses[i*10+j].weight);
 		}
 		printf("|\n");
 	}
@@ -93,7 +93,7 @@ void multiCell(){
 	printf("CELL INPUTS\n");
 	printf("C0\t|C1\t|C2\t|C3\t|C4\t|C5\t|C6\t|C7\t|C8\t|C9\t|\n");
 	for(int i=0; i<10; i++){
-		printf("%i\t|",cells[i].input);
+		printf("%f\t|",cells[i].input);
 	}
 	printf("\n");
 
@@ -121,7 +121,7 @@ void multiCell(){
 				printf("\033[1;31m");
 			}
 
-			printf("%i\t\033[1;0m|",cells[i].input);
+			printf("%f\t\033[1;0m|",cells[i].input);
 		}
 		printf("\n");
 		saveCells(cells,10,t);
@@ -139,7 +139,7 @@ void multiCell(){
 	for(int i=0; i<10; i++){
 		printf("C%i\t",i);
 		for(int j=0; j<10; j++){
-			printf("|%i\t",synapses[i*10+j].weight);
+			printf("|%f\t",synapses[i*10+j].weight);
 		}
 		printf("|\n");
 	}

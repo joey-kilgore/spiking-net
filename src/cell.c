@@ -10,7 +10,6 @@ void updateCell(Cell* cell){
 	else{
 		cell->isFiring = false;
 		cell->tSinceFire++;
-		cell->input *= 4;
-		cell->input /= 5;
+		cell->input *= 4.0f/5.0f;
 	}
 }

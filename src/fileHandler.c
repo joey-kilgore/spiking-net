@@ -24,7 +24,7 @@ void saveCells(Cell cells[], int numCells, int timeStep){
 	// save the cell current value to file
 	fprintf(cellFile, "%i,", timeStep);
 	for(int i=0; i<numCells; i++){
-		fprintf(cellFile, "%i,", cells[i].input);
+		fprintf(cellFile, "%f,", cells[i].input);
 	}
 	fprintf(cellFile, "\n");
 }
@@ -33,7 +33,7 @@ void saveSynapses(Synapse synapses[], int numSynapses, int timeStep){
 	// save the synapses weights to file
 	fprintf(synapseFile, "%i,", timeStep);
 	for(int i=0; i<numSynapses; i++){
-		fprintf(synapseFile, "%i,", synapses[i].weight);
+		fprintf(synapseFile, "%f,", synapses[i].weight);
 	}
 	fprintf(synapseFile, "\n");
 }

@@ -34,4 +34,4 @@ data_melt <- melt(data, id=c("V1"))
 
 print("CREATING PLOT...")
 plot <- ggplot(data=data_melt)+geom_line(aes(x=V1,y=value,color=variable))
-ggsave("./analysis/plot.png",plot)
+ggsave("./analysis/plot.png",plot, height=9,width=16)

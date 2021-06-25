@@ -27,7 +27,7 @@ int main(int argc, char *argv[]){
 
 	Environment* env = createEnvironment();
 	env->decayingTrainingRate = true;
-	env->decayingTrainingRateRatio = 0.95f;
+	env->decayingTrainingRateRatio = 0.97f;
 
 	// setup cells
 	for(int i=0; i<6; i++){
@@ -59,13 +59,13 @@ int main(int argc, char *argv[]){
 		// feed input to cells
 		if(env->timeStep<100){
 			// give round robin stimulation
-			cells[(env->timeStep%5)+1].input += 700;
+			cells[(env->timeStep%6)].input += 1000;
 		}else{
 			for(int i=0; i<5; i++){
 				cells[i+1].input += 200;
 			}
 		}
-		cells[0].input += 500;
+		cells[0].input += 250;
 
 		for(int i=0; i<6; i++){
 			updateCellEnv(&cells[i], env);

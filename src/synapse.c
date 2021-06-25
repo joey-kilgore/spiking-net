@@ -41,7 +41,7 @@ void updateSynapseEnv(Synapse* synapse, Environment* env){
 		if(synapse->in->tSinceFire < 10){
 			// if the in cell is firing before the out cell we will increase the weight
 			synapse->weight += env->trainingRate*increase[synapse->in->tSinceFire];
-			if(synapse->weight > 500) synapse->weight = 500;
+			if(synapse->weight > 1000) synapse->weight = 1000;
 		}
 	}
 }
